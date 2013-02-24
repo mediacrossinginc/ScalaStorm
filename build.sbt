@@ -5,7 +5,7 @@ name := "scala-storm"
 
 scalaVersion := "2.10.0"
 
-organization := "com.github.velvia"
+organization := "com.mediacrossing"
 
 // sbt defaults to <project>/src/test/{scala,java} unless we put this in
 unmanagedSourceDirectories in Test <<= Seq( baseDirectory( _ / "test" ) ).join
@@ -47,7 +47,7 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 pomExtra := (
-  <url>https://github.com/velvia/ScalaStorm</url>
+  <url>https://github.com/mediacrossinginc/ScalaStorm</url>
   <licenses>
     <license>
       <name>Apache</name>
