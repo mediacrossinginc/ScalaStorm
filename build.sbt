@@ -1,10 +1,9 @@
-import sbtrelease.Release._
+import sbtrelease.ReleasePlugin._
 
 
 name := "scala-storm"
 
-// If you comment this out, SBT 0.10 will default to Scala 2.8.1
-scalaVersion := "2.9.1"
+scalaVersion := "2.10.0"
 
 organization := "com.github.velvia"
 
@@ -16,14 +15,20 @@ unmanagedSourceDirectories in Compile <<= Seq( baseDirectory( _ / "src" ) ).join
 resolvers ++= Seq("clojars" at "http://clojars.org/repo/",
                   "clojure-releases" at "http://build.clojure.org/releases")
 
-libraryDependencies += "storm" % "storm" % "0.8.1"
+libraryDependencies ++= Seq("storm" % "storm" % "0.8.2" exclude(
+"log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12") exclude(
+"junit", "junit") exclude("commons-logging", "commons-logging"), 
+"org.slf4j" % "slf4j-api" % "1.7.2",
+"org.slf4j" % "slf4j-log4j12" % "1.7.2",
+"org.slf4j" % "jcl-over-slf4j" % "1.7.2"
+)
 
 // This is to prevent error [java.lang.OutOfMemoryError: PermGen space]
 javaOptions += "-XX:MaxPermSize=1g"
 
 javaOptions += "-Xmx2g"
 
-scalacOptions += "-Yresolve-term-conflict:package"
+scalacOptions ++= Seq("-Yresolve-term-conflict:package", "-unchecked", "-deprecation", "-feature", "-language:implicitConversions", "-language:postfixOps")
 
 // When doing sbt run, fork a separate process.  This is apparently needed by storm.
 fork := true
@@ -36,14 +41,6 @@ logLevel := Level.Info
 
 //************ Publishing info *********
 publishMavenStyle := true
-
-publishTo <<= version { (v: String) =>
-  val nexus = "https://oss.sonatype.org/"
-  if (v.trim.endsWith("SNAPSHOT"))
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
 
 publishArtifact in Test := false
 
@@ -59,15 +56,8 @@ pomExtra := (
     </license>
   </licenses>
   <scm>
-    <url>git@github.com:velvia/ScalaStorm.git</url>
-    <connection>scm:git:git@github.com:velvia/ScalaStorm.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>velvia</id>
-      <name>Evan Chan</name>
-      <url>http://github.com/velvia</url>
-    </developer>
-  </developers>)
+    <url>git@github.com:mediacrossinginc/ScalaStorm.git</url>
+    <connection>scm:git:git@github.com:mediacrossinginc/ScalaStorm.git</connection>
+  </scm>)
 
 seq(releaseSettings: _*)
