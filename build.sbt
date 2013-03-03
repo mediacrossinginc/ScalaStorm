@@ -15,7 +15,7 @@ unmanagedSourceDirectories in Compile <<= Seq( baseDirectory( _ / "src" ) ).join
 resolvers ++= Seq("clojars" at "http://clojars.org/repo/",
                   "clojure-releases" at "http://build.clojure.org/releases")
 
-libraryDependencies ++= Seq("storm" % "storm" % "0.8.2" exclude(
+libraryDependencies ++= Seq("storm" % "storm" % "0.8.2" % "provided" exclude(
 "log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12") exclude(
 "junit", "junit") exclude("commons-logging", "commons-logging"), 
 "org.slf4j" % "slf4j-api" % "1.7.2",
