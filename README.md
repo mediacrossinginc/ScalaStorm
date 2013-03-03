@@ -42,6 +42,7 @@ currently soliciting feedback for this feature, so drop me a line if you like it
 
 Getting Started
 ===============
+Below are the latest from the velivia branch.  The MediaCrossing one today should be built from source.
 
 The latest version of scala-storm, 0.2.2, corresponds to Storm 0.8.1 and is available from Maven Central.  Add this to your build.sbt:
 
@@ -64,7 +65,7 @@ If you want to build from source:
 
 * Download [sbt](https://github.com/harrah/xsbt/wiki) version 0.10.1 or above
 * clone this project
-* In the root project dir, type `sbt run`.  SBT will automatically download all dependencies, compile the code, and give you a menu of topologies to run.
+* In the root project dir, type `sbt test:run`.  SBT will automatically download all dependencies, compile the code, and give you a menu of topologies to run.
 
 To help you get started, the ExclamationTopology and WordCountTopology examples from storm starter have been included.
 
