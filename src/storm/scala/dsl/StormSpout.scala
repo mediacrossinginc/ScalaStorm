@@ -15,10 +15,12 @@ abstract class StormSpout(val outputFields: List[String],
                           val isDistributed: Boolean = false) extends BaseRichSpout with SetupFunc {
   var _context:TopologyContext = _
   var _collector:SpoutOutputCollector = _
+  var _conf: java.util.Map[_, _] = _
 
   def open(conf: Map[_, _], context: TopologyContext, collector: SpoutOutputCollector) = {
     _context = context
     _collector = collector
+    _conf = conf
     _setup()
   }
 
