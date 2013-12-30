@@ -55,4 +55,6 @@ pomExtra := (
     <connection>scm:git:git@github.com:mediacrossinginc/ScalaStorm.git</connection>
   </scm>)
 
+ReleaseKeys.versionBump := sbtrelease.Version.Bump.Minor
+
 seq(releaseSettings: _*)
