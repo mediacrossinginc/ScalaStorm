@@ -3,7 +3,8 @@ import sbtrelease.ReleasePlugin._
 
 name := "scala-storm"
 
-scalaVersion := "2.10.3"
+// If you comment this out, SBT 0.10 will default to Scala 2.8.1
+scalaVersion := "2.10.4"
 
 organization := "com.mediacrossing"
 
@@ -15,8 +16,7 @@ unmanagedSourceDirectories in Compile <<= Seq( baseDirectory( _ / "src" ) ).join
 resolvers ++= Seq("clojars" at "http://clojars.org/repo/",
                   "clojure-releases" at "http://build.clojure.org/releases")
 
-
-libraryDependencies ++= Seq("storm" % "storm" % "0.8.2" % "provided" exclude("junit", "junit"))
+libraryDependencies += "storm" % "storm" % "0.8.2" % "provided" exclude("junit", "junit")
 
 // This is to prevent error [java.lang.OutOfMemoryError: PermGen space]
 javaOptions += "-XX:MaxPermSize=1g"
